@@ -1,2 +1,2 @@
-# disc-locater
+# disc-finder
 Find discs online
