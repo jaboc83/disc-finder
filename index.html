@@ -1,708 +1,768 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Jake's Disc Finder</title>
-        <style>
-            body {
-                font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial, sans-serif;
-            }
+  <head>
+    <title>Jake's Disc Finder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial,
+          sans-serif;
+      }
 
-            h1 {
-                text-align: center;
-            }
+      h1 {
+        text-align: center;
+      }
 
-            td, th {
-                text-align: left;
-            }
+      td,
+      th {
+        text-align: left;
+      }
 
-            hr {
-                margin: 1em 0 1em 0;
-            }
+      hr {
+        margin: 1vw 0 1vw 0;
+      }
 
-            label {
-                font-weight: 600;
-            }
+      label {
+        font-weight: 600;
+      }
 
-            #content {
-                margin: 0 auto;
-                padding: 1em;
-                max-width: 800px;
-            }
+      #content {
+        margin: 0 auto;
+        padding: 1vw;
+        max-width: 800px;
+      }
 
-            #search-form {
-                padding-bottom: 1em;
-            }
+      #search-form {
+        padding-bottom: 1vw;
+      }
 
-            #search-input {
-                margin-right: 1em;
-            }
+      #search-input {
+        margin-right: 1vw;
+      }
 
-            #intro {
-                max-width: 700px;
-                text-align: center;
-            }
+      #intro {
+        max-width: 700px;
+        text-align: center;
+      }
 
-            #filler-text {
-                font-weight: 300;
-                font-style: italic;
-            }
+      #filler-text {
+        font-weight: 300;
+        font-style: italic;
+      }
 
-            .retailer-link {
-                text-decoration: none;
-                font-size: x-large;
-                color: #36f;
-                font-weight: 500;
-            }
+      .retailer-link {
+        text-decoration: none;
+        font-size: larger;
+        color: #36f;
+        font-weight: 500;
+      }
 
-            .retailer-link:hover {
-                color: #00d;
-            }
-        </style>
-    </head>
-    <body>
-        <div id="content">
-            <h1>Jake's Disc Finder</h1>
-            <p id="intro">
-                This is a simple search tool for finding discs at various retailers. 
-                To use, simply enter your search term into the search field and click on one
-                of the links. A new tab will open with a search started at the 
-                retailer's website. 
-            </p>
+      .retailer-link:hover {
+        color: #00d;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="content">
+      <h1>Jake's Disc Finder</h1>
+      <p id="intro">
+        This is a simple search tool for finding discs at various retailers. To
+        use, simply enter your search term into the search field and click on
+        one of the links. A new tab will open with a search started at the
+        retailer's website.
+      </p>
 
-            <hr />
+      <hr />
 
-            <div>
-                <div id="search-form">
-                    <label for="search-input">Disc Search</label>
-                    <input id="search-input" placeholder="e.g. Electron Envy" oninput="loadTable()" autofocus/>	
-                    <label for="sort-by-location">Sort by Location</label>
-                    <input id="sort-by-location" type="checkbox" oninput="loadTable()"/>
-                </div>
-                <table id="link-table">
-                    <tr>
-                        <th>Retailer Name</th>
-                        <th>Retailer Location</th>
-                    </tr>
-                </table>
-            </div>
+      <div>
+        <div id="search-form">
+          <label for="search-input">Disc Search</label>
+          <input
+            id="search-input"
+            placeholder="e.g. Electron Envy"
+            oninput="loadTable()"
+            autofocus
+          />
         </div>
-        <script>
+        <table id="link-table">
+          <thead>
+            <tr>
+              <th>Retailer Name</th>
+              <th>Retailer Location</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+    <script>
+      // Add a new row to the link-table
+      function addRow(record, isSearch) {
+        const table = document.getElementById("link-table");
+        const tableBody = document.querySelector("tbody");
+        const row = tableBody.insertRow(-1);
 
-        // Add a new row to the link-table
-        function addRow(record, isSearch) {
-            const table = document.getElementById('link-table');
-            const row = table.insertRow(-1);
+        // Add Name to row
+        const nameCell = row.insertCell(-1);
+        var link = document.createElement("a");
+        link.setAttribute(
+          "href",
+          record.url + (isSearch ? record.searchPath : "")
+        );
+        link.setAttribute("target", "_blank");
+        link.className = "retailer-link";
+        link.appendChild(document.createTextNode(record.name));
+        nameCell.appendChild(link);
 
-            // Add Name to row
-            const nameCell = row.insertCell(-1);
-            var link = document.createElement('a');
-            link.setAttribute("href", record.url + (isSearch ? record.searchPath : ''));
-            link.setAttribute("target", "_blank");
-            link.className = "retailer-link";
-            link.appendChild(document.createTextNode(record.name))
-            nameCell.appendChild(link);
+        // Add Location to row
+        const locationCell = row.insertCell(-1);
+        link = document.createElement("a");
+        link.setAttribute(
+          "href",
+          record.url + (isSearch ? record.searchPath : "")
+        );
+        link.setAttribute("target", "_blank");
+        link.className = "retailer-link";
+        link.appendChild(document.createTextNode(record.location));
+        locationCell.appendChild(link);
+      }
 
-            // Add Location to row
-            const locationCell = row.insertCell(-1);
-            link = document.createElement('a');
-            link.setAttribute("href", record.url + (isSearch ? record.searchPath : ''));
-            link.setAttribute("target", "_blank");
-            link.className = "retailer-link";
-            link.appendChild(document.createTextNode(record.location))
-            locationCell.appendChild(link);
+      // Open a url in a new tab. Might not work with popup blockers
+      // FOR FUTURE USE
+      function openInNewTab(href) {
+        Object.assign(document.createElement("a"), {
+          target: "_blank",
+          href: href,
+        }).click();
+      }
+
+      // Remove all rows from the link table.
+      function clearTable() {
+        // Clear existing data first.
+        const table = document.getElementById("link-table");
+        const rowCount = table.rows.length;
+        for (var i = rowCount - 1; i > 0; i--) {
+          table.deleteRow(i);
         }
-        
-        // Open a url in a new tab. Might not work with popup blockers
-        // FOR FUTURE USE
-        function openInNewTab(href) {
-            Object.assign(document.createElement('a'), {
-                target: '_blank',
-                href: href,
-            }).click();
+      }
+
+      // Load some filler text into the link table.
+      function loadFillerText() {
+        const table = document.getElementById("link-table");
+        const row = table.insertRow(-1);
+
+        // Add filler text to Retailer Name column in row
+        const nameCell = row.insertCell(-1);
+        const fillerSpan = document.createElement("span");
+        fillerSpan.id = "filler-text";
+        fillerSpan.appendChild(
+          document.createTextNode("Waiting for search term...")
+        );
+        nameCell.appendChild(fillerSpan);
+
+        // Add Location column filler value
+        row.insertCell(-1);
+      }
+
+      // Sort the link table by column
+      function sortColumn(index) {
+        // Query all rows
+        const table = document.getElementById("link-table");
+        const tableBody = table.querySelector("tbody");
+        const rows = tableBody.querySelectorAll("tr");
+
+        // Clone the rows
+        const newRows = Array.from(rows);
+
+        // Sort rows by the content of cells
+        newRows.sort(function (rowA, rowB) {
+          // Get the content of cells
+          const cellA = rowA.querySelectorAll("td")[index].querySelector("a")
+            .innerHTML;
+          const cellB = rowB.querySelectorAll("td")[index].querySelector("a")
+            .innerHTML;
+
+          switch (true) {
+            case cellA > cellB:
+              return 1;
+            case cellA < cellB:
+              return -1;
+            case cellA === cellB:
+              return 0;
+          }
+        });
+
+        // Remove old rows.
+        [].forEach.call(rows, function (row) {
+          tableBody.removeChild(row);
+        });
+
+        // Append new rows.
+        newRows.forEach(function (newRow) {
+          tableBody.appendChild(newRow);
+        });
+      }
+
+      // Load the link-table with links
+      function loadTable() {
+        // Clear any existing data first.
+        clearTable();
+
+        // Need a search term.
+        var searchTerm = document.getElementById("search-input").value;
+        if (searchTerm == "") {
+          loadFillerText();
+          return;
         }
 
-        function clearTable() {
-            // Clear existing data first.
-            const table = document.getElementById('link-table')
-            const rowCount = table.rows.length;
-            for (var i=rowCount - 1; i > 0; i--) {
-                table.deleteRow(i);
-            }
-        }
+        // Make sure it's URL Safe
+        searchTerm = encodeURIComponent(searchTerm);
 
-        function loadFillerText() {
-            const table = document.getElementById('link-table');
-            const row = table.insertRow(-1);
+        // Master list of sites. Probably store this in a JSON file in the future.
+        const siteList = [
+          {
+            url: `https://1010discs.com/`,
+            searchPath: `search?type=product&q=${searchTerm}`,
+            name: "1010 Discs",
+            location: "MS, USA",
+          },
+          {
+            url: `https://adoptdiscgolfcustoms.com/`,
+            searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
+            name: "Adopt Disc Golf",
+            location: "NC, USA",
+          },
+          {
+            url: `https://airbornpreserve.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Airborn Preserve Pro Shop",
+            location: "MN, USA",
+          },
+          // Coming soon?
+          // {
+          //     url: `https://alloutdiscgolf.com/`,
+          //     searchPath: `?s=${searchTerm}&post_type=product`,
+          //     name: 'All Out Disc Golf',
+          //     location: 'AZ, USA'
+          // },
+          {
+            url: `https://anhyzerdg.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Anhyzer DG",
+            location: "USA",
+          },
+          {
+            url: `https://www.ardg.shop/`,
+            searchPath: `s/search?q=${searchTerm}`,
+            name: "Another Round Disc Golf",
+            location: "NC, USA",
+          },
+          {
+            url: `https://www.appalachiandiscgolf.com/`,
+            searchPath: `search?q=${searchTerm}*&type=product`,
+            name: "Appalachian Disc Golf",
+            location: "WV, USA",
+          },
+          {
+            url: `https://arrowdiscs.com/`,
+            searchPath: `?s=${searchTerm}`,
+            name: "Arrow Disc Distributions",
+            location: "CA, USA",
+          },
+          {
+            url: `https://bsbochantinupshot.com/ebay-ecommerce`,
+            searchPath: ``,
+            name: "B.S. Bochantin Upshot",
+            location: "NJ, USA",
+          },
+          {
+            url: `https://www.basketbashersdiscgolf.com/`,
+            searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
+            name: "Basket Bashers",
+            location: "NC, USA",
+          },
+          {
+            url: `https://baystatediscgolf.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Bay State Disc Golf",
+            location: "MA, USA",
+          },
+          {
+            url: `https://www.blueskydiscgolf.co/`,
+            searchPath: `?s=${searchTerm}`,
+            name: "Blue Sky Disc Golf",
+            location: "CO, USA",
+          },
+          {
+            url: `https://www.breakingaces.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Breaking Aces",
+            location: "MI, USA",
+          },
+          {
+            url: `https://www.briadiscgolf.com/`,
+            searchPath: `search-results-page/${searchTerm}`,
+            name: "BRIA Disc Golf",
+            location: "NJ, USA",
+          },
+          {
+            url: `https://www.ebay.com/str/celestialdiscs`,
+            searchPath: `?_bkw=${searchTerm}`,
+            name: "Celestial Discs",
+            location: "IA, USA",
+          },
+          {
+            url: `https://chainsordyediscgolf.com/`,
+            searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
+            name: "Chains or Dye",
+            location: "USA",
+          },
+          {
+            url: `https://chuckerdiscgolf.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Chucker Disc Golf",
+            location: "MN, USA",
+          },
+          {
+            url: `http://communitydiscs.com/`,
+            searchPath: `search.php?search_query=${searchTerm}`,
+            name: "Community Discs",
+            location: "NC, USA",
+          },
+          {
+            url: `https://www.cycleworksdiscgolf.com/`,
+            searchPath: `s/search?q=${searchTerm}`,
+            name: "Cycle Works",
+            location: "TX, USA",
+          },
+          {
+            url: `https://www.daddydiscgolf.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Daddy Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://www.deathputtdiscsupply.com/`,
+            searchPath: `s/search?q=${searchTerm}`,
+            name: "Death Putt Disc Supply",
+            location: "OH, USA",
+          },
+          {
+            url: `https://dfxdiscs.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "DFX Discs",
+            location: "USA",
+          },
+          {
+            url: `https://www.therealdiscndat.com/`,
+            searchPath: `apps/search?q=${searchTerm}`,
+            name: "Disc n' Dat",
+            location: "KY, USA",
+          },
+          {
+            url: `https://thediscbarn.com/`,
+            searchPath: `search?type=product&options%5Bprefix%5D=last&q=${searchTerm}`,
+            name: "The Disc Barn",
+            location: "TX, USA",
+          },
+          {
+            url: `https://www.discbaron.com/`,
+            searchPath: `searchresults.asp?Search=${searchTerm}&Submit=`,
+            name: "Disc Baron",
+            location: "MI, USA",
+          },
+          {
+            url: `https://thediscdepot.com/`,
+            searchPath: `search?options%5Bunavailable_products%5D=show&options%5Bprefix%5D=last&q=${searchTerm}`,
+            name: "The Disc Depot",
+            location: "USA",
+          },
+          {
+            url: `https://discgolf978.com/`,
+            searchPath: `search.php?search_query=${searchTerm}`,
+            name: "Disc Golf 978",
+            location: "MA, USA",
+          },
+          {
+            url: `https://www.discgolfamericaonline.com/`,
+            searchPath: `?s=${searchTerm}`,
+            name: "Disc Golf America",
+            location: "USA",
+          },
+          {
+            url: `https://www.discgolfcenter.com/`,
+            searchPath: `main_displayProductList.php?sn=${searchTerm}`,
+            name: "Disc Golf Center",
+            location: "FL, USA",
+          },
+          {
+            url: `https://thediscgolfexperience.com/`,
+            searchPath: `?s=${searchTerm}`,
+            name: "Disc Golf Over Everything",
+            location: "USA",
+          },
+          {
+            url: `https://discshop.eu/`,
+            searchPath: `en/search?s=${searchTerm}`,
+            name: "Disc Shop",
+            location: "Lithuania, EU",
+          },
+          {
+            url: `https://discstore.com/`,
+            searchPath: `catalogsearch/result/?cat=0&q=${searchTerm}`,
+            name: "Disc Store",
+            location: "NE, USA",
+          },
+          {
+            url: `https://discimusprime.com/`,
+            searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
+            name: "Discimus Prime",
+            location: "USA",
+          },
+          {
+            url: `https://discountdiscgolf.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Discount Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://www.dtworld.com/`,
+            searchPath: `searchresults.asp?Search=${searchTerm}&Submit=`,
+            name: "Discovering the World",
+            location: "CA, USA",
+          },
+          {
+            url: `https://www.dyeing2dg.com/`,
+            searchPath: `s/search?q=${searchTerm}`,
+            name: "Dyeing to Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://www.dzdiscs.com/`,
+            searchPath: `catalogsearch/result/?cat=0&q=${searchTerm}`,
+            name: "DZ Discs",
+            location: "KS, USA",
+          },
+          {
+            url: `https://fisherdiscgolf.com/`,
+            searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
+            name: "Fisher Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://www.flightfactorydiscs.com/`,
+            searchPath: `search?type=product,page,article&q=${searchTerm}*`,
+            name: "Flight Factory",
+            location: "FL, USA",
+          },
+          {
+            url: `https://foundationdiscs.com/`,
+            searchPath: `search?type=product%2Carticle%2Cpage&q=${searchTerm}*`,
+            name: "Foundation Disc Golf",
+            location: "VA, USA",
+          },
+          {
+            url: `https://gemdiscs.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Gem Discs",
+            location: "USA",
+          },
+          {
+            url: `https://golfdisco.com/`,
+            searchPath: `search?type=product%2Carticle%2Cpage&q=${searchTerm}`,
+            name: "Golf Disco",
+            location: "FL, USA",
+          },
+          {
+            url: `https://gottagogottathrow.com/`,
+            searchPath: `search?type=product&q=${searchTerm}`,
+            name: "Gotta Go Gotta Throw",
+            location: "MN, USA",
+          },
+          {
+            url: `https://greatlakesdisc.com/`,
+            searchPath: `search.php?search_query=${searchTerm}`,
+            name: "Great Lakes Disc",
+            location: "MI, USA",
+          },
+          {
+            url: `https://gnrdiscgolf.com/shop/`,
+            searchPath: `?s=${searchTerm}`,
+            name: "Gripper and Ripper Disc Golf",
+            location: "PA, USA",
+          },
+          {
+            url: `https://hazyshade.com/`,
+            searchPath: `search?q=${searchTerm}&type=product`,
+            name: "Hazy Shade",
+            location: "OH, USA",
+          },
+          {
+            url: `https://www.ebay.com/str/hyzerfarm`,
+            searchPath: `?_bkw=${searchTerm}`,
+            name: "Hyzer Farm",
+            location: "WA, USA",
+          },
+          {
+            url: `https://hyzerflop.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Hyzer Flop",
+            location: "CA, USA",
+          },
+          {
+            url: `https://www.indydiscsupply.com/`,
+            searchPath: `search-results/q-${searchTerm}`,
+            name: "Indy Disc Supply",
+            location: "IN, USA",
+          },
+          {
+            url: `https://infinitediscs.com/`,
+            searchPath: `Search-Results?search_text=${searchTerm}`,
+            name: "Infinite Discs",
+            location: "UT, USA",
+          },
+          {
+            url: `https://www.innerpeacediscgolf.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Inner Peace Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://jess-ben-discin.square.site/`,
+            searchPath: `s/search?q=${searchTerm}`,
+            name: "Jess Ben Discin'",
+            location: "MO, USA",
+          },
+          {
+            url: `https://kwsdiscgolf.com/`,
+            searchPath: `?product_cat=&s=${searchTerm}&post_type=product`,
+            name: "KW's Disc Golf",
+            location: "MI, USA",
+          },
+          // Be back soon?
+          // {
+          //     url: `https://loamsickdiscgolf.com/`,
+          //     searchPath: ``,
+          //     name: "Loamsick Disc Golf",
+          //     location: 'USA'
+          // },
+          {
+            url: `https://localroute.com/`,
+            searchPath: `search?type=product&q=${searchTerm}`,
+            name: "Local Route",
+            location: "FL, USA",
+          },
+          {
+            url: `https://www.lonestardiscs.net/`,
+            searchPath: `search-results/q-${searchTerm}`,
+            name: "Lone Star Disc Supply",
+            location: "TX, USA",
+          },
+          {
+            url: `https://luckydiscgolf.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Lucky Disc Golf",
+            location: "NV, USA",
+          },
+          {
+            url: `https://www.marshallstreetdiscgolf.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Marshall Street",
+            location: "MA, USA",
+          },
+          {
+            url: `https://milehighdiscs.com/`,
+            searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
+            name: "Mile High Discs",
+            location: "CO, USA",
+          },
+          {
+            url: `https://mvpproshop.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "MVP Pro Shop",
+            location: "MI, USA",
+          },
+          {
+            url: `https://www.naileditdiscgolf.com/`,
+            searchPath: `pages/search-results-page?q=${searchTerm}`,
+            name: "Nailed It Disc Golf",
+            location: "WI, USA",
+          },
+          {
+            url: `https://www.thenatidiscgolf.com/`,
+            searchPath: `apps/search?q=${searchTerm}`,
+            name: "The Nati",
+            location: "OH, USA",
+          },
+          {
+            url: `https://otbdiscs.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "OTB Discs",
+            location: "CA, USA",
+          },
+          {
+            url: `https://www.outofboundsdg.com/`,
+            searchPath: `search-results/q-${searchTerm}`,
+            name: "Out of Bounds Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://www.par3discgolf.com/`,
+            searchPath: `search-results/q-${searchTerm}`,
+            name: "Par 3 Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://parplastics.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Par Plastics",
+            location: "MN, USA",
+          },
+          {
+            url: `https://www.piratedisc.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Pirate Disc",
+            location: "MN, USA",
+          },
+          {
+            url: `https://www.plasticaddicts.net/`,
+            searchPath: `search-results-page/${searchTerm}`,
+            name: "Plastic Addicts",
+            location: "IL, USA",
+          },
+          // Coming soon
+          // {
+          //     url: `https://www.plastiquediscs.com/`,
+          //     searchPath: ``,
+          //     name: 'Plastique Discs',
+          //     location: 'DE, USA'
+          // },
+          {
+            url: `https://purelinedg.com/`,
+            searchPath: `products/search?search=${searchTerm}`,
+            name: "Pureline Disc Golf",
+            location: "FL, USA",
+          },
+          {
+            url: `https://www.randiscgolf.com/`,
+            searchPath: `search-results/q-${searchTerm}`,
+            name: "Ran Disc Golf",
+            location: "PA, USA",
+          },
+          {
+            url: `https://resistancediscs.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Resistance Discs",
+            location: "OR, USA",
+          },
+          {
+            url: `https://roguediscs.com/`,
+            searchPath: `discs?terms=${searchTerm}`,
+            name: "Rogue Discs",
+            location: "IN, USA",
+          },
+          {
+            url: `https://skulboy.storenvy.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Skullboy Designs",
+            location: "CA, USA",
+          },
+          {
+            url: `https://www.sunkingdiscs.com/`,
+            searchPath: `?target=search&mode=search&substring=${searchTerm}&including=all`,
+            name: "Sun King Discs",
+            location: "FL, USA",
+          },
+          {
+            url: `https://www.superflydiscgolf.com/`,
+            searchPath: `s/search?q=${searchTerm}`,
+            name: "SuperFly Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://sweetspotdiscgolf.com/`,
+            searchPath: `?s=${searchTerm}`,
+            name: "SweetSpot Disc Golf",
+            location: "MI, USA",
+          },
+          {
+            url: `https://teamfiggins.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Team Figgins",
+            location: "FL, USA",
+          },
+          {
+            url: `https://tgmskateboards.com/`,
+            searchPath: `search.php?search_query=${searchTerm}&section=product`,
+            name: "TGM Skateboards",
+            location: "MI, USA",
+          },
+          {
+            url: `https://throwshop.us/`,
+            searchPath: `search?type=product&q=${searchTerm}`,
+            name: "The Throw Shop",
+            location: "MI, USA",
+          },
+          {
+            url: `https://titandiscgolf.com/`,
+            searchPath: `search?type=product&q=${searchTerm}*`,
+            name: "Titan Disc Golf",
+            location: "IA, USA",
+          },
+          {
+            url: `https://topbanddisc.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Top Band Disc Golf",
+            location: "USA",
+          },
+          {
+            url: `https://treelovedg.com/`,
+            searchPath: `search?type=product%2Carticle%2Cpage&q=${searchTerm}`,
+            name: "Tree Love Disc Golf",
+            location: "TX, USA",
+          },
+          {
+            url: `https://www.tudiscgolf.com/`,
+            searchPath: `?s=${searchTerm}&post_type=product`,
+            name: "Truly Unique",
+            location: "MO, USA",
+          },
+          {
+            url: `https://www.wanderdiscgolf.com/`,
+            searchPath: ``,
+            name: "Wander Disc Golf",
+            location: "IA, USA",
+          },
+          {
+            url: `https://www.wanderdiscgolf.com/`,
+            searchPath: `search?q=${searchTerm}`,
+            name: "Wander Disc Golf",
+            location: "IA, USA",
+          },
+        ];
 
-            // Add filler text to Retailer Name column in row
-            const nameCell = row.insertCell(-1);
-            const fillerSpan = document.createElement('span');
-            fillerSpan.id = "filler-text";
-            fillerSpan.appendChild(document.createTextNode("Waiting for search term..."));
-            nameCell.appendChild(fillerSpan);
+        // Query the table
+        const table = document.getElementById("link-table");
 
-            // Add Location column filler value
-            row.insertCell(-1);
-        }
+        // Query the headers
+        const headers = table.querySelectorAll("th");
 
-        // Load the link-table with links
-        function loadTable() {
-            // Clear any existing data first.
-            clearTable()
+        // Loop over the headers
+        [].forEach.call(headers, function (header, index) {
+          header.addEventListener("click", function () {
+            // This function will sort the column
+            sortColumn(index);
+          });
+        });
 
-            // Need a search term.
-            var searchTerm = document.getElementById('search-input').value;
-            if(searchTerm == "") {
-                loadFillerText();
-                return;
-            }
+        // Add rows to the table for each record above.
+        siteList.forEach((record) => {
+          addRow(record, searchTerm != "");
+        });
+      }
 
-            // Make sure it's URL Safe
-            searchTerm = encodeURIComponent(searchTerm)
-
-            // Master list of sites. Probably store this in a JSON file in the future.
-            const siteList = [
-                {
-                    url: `https://1010discs.com/`,
-                    searchPath: `search?type=product&q=${searchTerm}`,
-                    name: '1010 Discs',
-                    location: 'MS, USA'
-                },
-                {
-                    url: `https://adoptdiscgolfcustoms.com/`,
-                    searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
-                    name: 'Adopt Disc Golf',
-                    location: 'NC, USA'
-                },
-                {
-                    url: `https://airbornpreserve.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Airborn Preserve Pro Shop',
-                    location: 'MN, USA'
-                },
-                // Coming soon?
-                // {
-                //     url: `https://alloutdiscgolf.com/`,
-                //     searchPath: `?s=${searchTerm}&post_type=product`,
-                //     name: 'All Out Disc Golf',
-                //     location: 'AZ, USA'
-                // },
-                {
-                    url: `https://anhyzerdg.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Anhyzer DG',
-                    location: 'USA'
-                },
-                {
-                    url: `https://www.ardg.shop/`,
-                    searchPath: `s/search?q=${searchTerm}`,
-                    name: 'Another Round Disc Golf',
-                    location: 'NC, USA'
-                },
-                {
-                    url: `https://www.appalachiandiscgolf.com/`,
-                    searchPath: `search?q=${searchTerm}*&type=product`,
-                    name: 'Appalachian Disc Golf',
-                    location: 'WV, USA'
-                },
-                {
-                    url: `https://arrowdiscs.com/`,
-                    searchPath: `?s=${searchTerm}`,
-                    name: 'Arrow Disc Distributions',
-                    location: 'CA, USA'
-                },
-                {
-                    url: `https://bsbochantinupshot.com/ebay-ecommerce`,
-                    searchPath: ``,
-                    name: 'B.S. Bochantin Upshot',
-                    location: 'NJ, USA'
-                },
-                {
-                    url: `https://www.basketbashersdiscgolf.com/`,
-                    searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
-                    name: 'Basket Bashers',
-                    location: 'NC, USA'
-                },
-                {
-                    url: `https://baystatediscgolf.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Bay State Disc Golf',
-                    location: 'MA, USA'
-                },
-                {
-                    url: `https://www.blueskydiscgolf.co/`,
-                    searchPath: `?s=${searchTerm}`,
-                    name: 'Blue Sky Disc Golf',
-                    location: 'CO, USA'
-                },
-                {
-                    url: `https://www.breakingaces.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Breaking Aces',
-                    location: 'MI, USA'
-                },
-                {
-                    url: `https://www.briadiscgolf.com/`,
-                    searchPath: `search-results-page/${searchTerm}`,
-                    name: 'BRIA Disc Golf',
-                    location: 'NJ, USA'
-                },
-                {
-                    url: `https://www.ebay.com/str/celestialdiscs`,
-                    searchPath: `?_bkw=${searchTerm}`,
-                    name: 'Celestial Discs',
-                    location: 'IA, USA'
-                },
-                {
-                    url: `https://chainsordyediscgolf.com/`,
-                    searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
-                    name: 'Chains or Dye',
-                    location: 'USA'
-                },
-                {
-                    url: `https://chuckerdiscgolf.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Chucker Disc Golf',
-                    location: 'MN, USA'
-                },
-                {
-                    url: `http://communitydiscs.com/`,
-                    searchPath: `search.php?search_query=${searchTerm}`,
-                    name: 'Community Discs',
-                    location: 'NC, USA'
-                },
-                {
-                    url: `https://www.cycleworksdiscgolf.com/`,
-                    searchPath: `s/search?q=${searchTerm}`,
-                    name: 'Cycle Works',
-                    location: 'TX, USA'
-                },
-                {
-                    url: `https://www.daddydiscgolf.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Daddy Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://www.deathputtdiscsupply.com/`,
-                    searchPath: `s/search?q=${searchTerm}`,
-                    name: 'Death Putt Disc Supply',
-                    location: 'OH, USA'
-                },
-                {
-                    url: `https://dfxdiscs.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'DFX Discs',
-                    location: 'USA'
-                },
-                {
-                    url: `https://www.therealdiscndat.com/`,
-                    searchPath: `apps/search?q=${searchTerm}`,
-                    name: "Disc n' Dat",
-                    location: "KY, USA"
-                },
-                {
-                    url: `https://thediscbarn.com/`,
-                    searchPath: `search?type=product&options%5Bprefix%5D=last&q=${searchTerm}`,
-                    name: 'The Disc Barn',
-                    location: 'TX, USA'
-                },
-                {
-                    url: `https://www.discbaron.com/`,
-                    searchPath: `searchresults.asp?Search=${searchTerm}&Submit=`,
-                    name: 'Disc Baron',
-                    location: 'MI, USA'
-                },
-                {
-                    url: `https://thediscdepot.com/`,
-                    searchPath: `search?options%5Bunavailable_products%5D=show&options%5Bprefix%5D=last&q=${searchTerm}`,
-                    name: 'The Disc Depot',
-                    location: 'USA'
-                },
-                {
-                    url: `https://discgolf978.com/`,
-                    searchPath: `search.php?search_query=${searchTerm}`,
-                    name: 'Disc Golf 978',
-                    location: 'MA, USA'
-                },
-                {
-                    url: `https://www.discgolfamericaonline.com/`,
-                    searchPath: `?s=${searchTerm}`,
-                    name: 'Disc Golf America',
-                    location: 'USA'
-                },
-                {
-                    url: `https://www.discgolfcenter.com/`,
-                    searchPath: `main_displayProductList.php?sn=${searchTerm}`,
-                    name: 'Disc Golf Center',
-                    location: 'FL, USA'
-                },
-                {
-                    url: `https://thediscgolfexperience.com/`,
-                    searchPath: `?s=${searchTerm}`,
-                    name: 'Disc Golf Over Everything',
-                    location: 'USA'
-                },
-                {
-                    url: `https://discshop.eu/`,
-                    searchPath: `en/search?s=${searchTerm}`,
-                    name: 'Disc Shop',
-                    location: 'Lithuania, EU'
-                },
-                {
-                    url: `https://discstore.com/`,
-                    searchPath: `catalogsearch/result/?cat=0&q=${searchTerm}`,
-                    name: 'Disc Store',
-                    location: 'NE, USA'
-                },
-                {
-                    url: `https://discimusprime.com/`,
-                    searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
-                    name: 'Discimus Prime',
-                    location: 'USA'
-                },
-                {
-                    url: `https://discountdiscgolf.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Discount Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://www.dtworld.com/`,
-                    searchPath: `searchresults.asp?Search=${searchTerm}&Submit=`,
-                    name: 'Discovering the World',
-                    location: 'CA, USA'
-                },
-                {
-                    url: `https://www.dyeing2dg.com/`,
-                    searchPath: `s/search?q=${searchTerm}`,
-                    name: 'Dyeing to Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://www.dzdiscs.com/`,
-                    searchPath: `catalogsearch/result/?cat=0&q=${searchTerm}`,
-                    name: 'DZ Discs',
-                    location: 'KS, USA'
-                },
-                {
-                    url: `https://fisherdiscgolf.com/`,
-                    searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
-                    name: 'Fisher Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://www.flightfactorydiscs.com/`,
-                    searchPath: `search?type=product,page,article&q=${searchTerm}*`,
-                    name: 'Flight Factory',
-                    location: 'FL, USA'
-                },
-                {
-                    url: `https://foundationdiscs.com/`,
-                    searchPath: `search?type=product%2Carticle%2Cpage&q=${searchTerm}*`,
-                    name: 'Foundation Disc Golf',
-                    location: 'VA, USA'
-                },
-                {
-                    url: `https://gemdiscs.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Gem Discs',
-                    location: 'USA'
-                },
-                {
-                    url: `https://golfdisco.com/`,
-                    searchPath: `search?type=product%2Carticle%2Cpage&q=${searchTerm}`,
-                    name: 'Golf Disco',
-                    location: 'FL, USA'
-                },
-                {
-                    url: `https://gottagogottathrow.com/`,
-                    searchPath: `search?type=product&q=${searchTerm}`,
-                    name: 'Gotta Go Gotta Throw',
-                    location: 'MN, USA'
-                },
-                {
-                    url: `https://greatlakesdisc.com/`,
-                    searchPath: `search.php?search_query=${searchTerm}`,
-                    name: 'Great Lakes Disc',
-                    location: 'MI, USA'
-                },
-                {
-                    url: `https://gnrdiscgolf.com/shop/`,
-                    searchPath: `?s=${searchTerm}`,
-                    name: 'Gripper and Ripper Disc Golf',
-                    location: 'PA, USA'
-                },
-                {
-                    url: `https://hazyshade.com/`,
-                    searchPath: `search?q=${searchTerm}&type=product`,
-                    name: 'Hazy Shade',
-                    location: 'OH, USA'
-                },
-                {
-                    url: `https://www.ebay.com/str/hyzerfarm`,
-                    searchPath: `?_bkw=${searchTerm}`,
-                    name: 'Hyzer Farm',
-                    location: 'WA, USA'
-                },
-                {
-                    url: `https://hyzerflop.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Hyzer Flop',
-                    location: 'CA, USA'
-                },
-                {
-                    url: `https://www.indydiscsupply.com/`,
-                    searchPath: `search-results/q-${searchTerm}`,
-                    name: 'Indy Disc Supply',
-                    location: 'IN, USA'
-                },
-                {
-                    url: `https://infinitediscs.com/`,
-                    searchPath: `Search-Results?search_text=${searchTerm}`,
-                    name: 'Infinite Discs',
-                    location: 'UT, USA'
-                },
-                {
-                    url: `https://www.innerpeacediscgolf.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Inner Peace Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://jess-ben-discin.square.site/`,
-                    searchPath: `s/search?q=${searchTerm}`,
-                    name: "Jess Ben Discin'",
-                    location: 'MO, USA'
-                },
-                {
-                    url: `https://kwsdiscgolf.com/`,
-                    searchPath: `?product_cat=&s=${searchTerm}&post_type=product`,
-                    name: "KW's Disc Golf",
-                    location: 'MI, USA'
-                },
-                // Be back soon?
-                // {
-                //     url: `https://loamsickdiscgolf.com/`,
-                //     searchPath: ``,
-                //     name: "Loamsick Disc Golf",
-                //     location: 'USA'
-                // },
-                {
-                    url: `https://localroute.com/`,
-                    searchPath: `search?type=product&q=${searchTerm}`,
-                    name: "Local Route",
-                    location: 'FL, USA'
-                },
-                {
-                    url: `https://www.lonestardiscs.net/`,
-                    searchPath: `search-results/q-${searchTerm}`,
-                    name: 'Lone Star Disc Supply',
-                    location: 'TX, USA'
-                },
-                {
-                    url: `https://luckydiscgolf.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Lucky Disc Golf',
-                    location: 'NV, USA'
-                },
-                {
-                    url: `https://www.marshallstreetdiscgolf.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Marshall Street',
-                    location: 'MA, USA'
-                },
-                {
-                    url: `https://milehighdiscs.com/`,
-                    searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
-                    name: 'Mile High Discs',
-                    location: 'CO, USA'
-                },
-                {
-                    url: `https://mvpproshop.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'MVP Pro Shop',
-                    location: 'MI, USA'
-                },
-                {
-                    url: `https://www.naileditdiscgolf.com/`,
-                    searchPath: `pages/search-results-page?q=${searchTerm}`,
-                    name: 'Nailed It Disc Golf',
-                    location: 'WI, USA'
-                },
-                {
-                    url: `https://www.thenatidiscgolf.com/`,
-                    searchPath: `apps/search?q=${searchTerm}`,
-                    name: 'The Nati',
-                    location: 'OH, USA'
-                },
-                {
-                    url: `https://otbdiscs.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'OTB Discs',
-                    location: 'CA, USA'
-                },
-                {
-                    url: `https://www.outofboundsdg.com/`,
-                    searchPath: `search-results/q-${searchTerm}`,
-                    name: 'Out of Bounds Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://www.par3discgolf.com/`,
-                    searchPath: `search-results/q-${searchTerm}`,
-                    name: 'Par 3 Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://parplastics.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Par Plastics',
-                    location: 'MN, USA'
-                },
-                {
-                    url: `https://www.piratedisc.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Pirate Disc',
-                    location: 'MN, USA'
-                },
-                {
-                    url: `https://www.plasticaddicts.net/`,
-                    searchPath: `search-results-page/${searchTerm}`,
-                    name: 'Plastic Addicts',
-                    location: 'IL, USA'
-                },
-                // Coming soon
-                // {
-                //     url: `https://www.plastiquediscs.com/`,
-                //     searchPath: ``,
-                //     name: 'Plastique Discs',
-                //     location: 'DE, USA'
-                // },
-                {
-                    url: `https://purelinedg.com/`,
-                    searchPath: `products/search?search=${searchTerm}`,
-                    name: 'Pureline Disc Golf',
-                    location: 'FL, USA'
-                },
-                {
-                    url: `https://www.randiscgolf.com/`,
-                    searchPath: `search-results/q-${searchTerm}`,
-                    name: 'Ran Disc Golf',
-                    location: 'PA, USA'
-                },
-                {
-                    url: `https://resistancediscs.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Resistance Discs',
-                    location: 'OR, USA'
-                },
-                {
-                    url: `https://roguediscs.com/`,
-                    searchPath: `discs?terms=${searchTerm}`,
-                    name: 'Rogue Discs',
-                    location: 'IN, USA'
-                },
-                {
-                    url: `https://skulboy.storenvy.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Skullboy Designs',
-                    location: 'CA, USA'
-                },
-                {
-                    url: `https://www.sunkingdiscs.com/`,
-                    searchPath: `?target=search&mode=search&substring=${searchTerm}&including=all`,
-                    name: 'Sun King Discs',
-                    location: 'FL, USA'
-                },
-                {
-                    url: `https://www.superflydiscgolf.com/`,
-                    searchPath: `s/search?q=${searchTerm}`,
-                    name: 'SuperFly Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://sweetspotdiscgolf.com/`,
-                    searchPath: `?s=${searchTerm}`,
-                    name: 'SweetSpot Disc Golf',
-                    location: 'MI, USA'
-                },
-                {
-                    url: `https://teamfiggins.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Team Figgins',
-                    location: 'FL, USA'
-                },
-                {
-                    url: `https://tgmskateboards.com/`,
-                    searchPath: `search.php?search_query=${searchTerm}&section=product`,
-                    name: 'TGM Skateboards',
-                    location: 'MI, USA'
-                },
-                {
-                    url: `https://throwshop.us/`,
-                    searchPath: `search?type=product&q=${searchTerm}`,
-                    name: 'The Throw Shop',
-                    location: 'MI, USA'
-                },
-                {
-                    url: `https://titandiscgolf.com/`,
-                    searchPath: `search?type=product&q=${searchTerm}*`,
-                    name: 'Titan Disc Golf',
-                    location: 'IA, USA'
-                },
-                {
-                    url: `https://topbanddisc.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Top Band Disc Golf',
-                    location: 'USA'
-                },
-                {
-                    url: `https://treelovedg.com/`,
-                    searchPath: `search?type=product%2Carticle%2Cpage&q=${searchTerm}`,
-                    name: 'Tree Love Disc Golf',
-                    location: 'TX, USA'
-                },
-                {
-                    url: `https://www.tudiscgolf.com/`,
-                    searchPath: `?s=${searchTerm}&post_type=product`,
-                    name: 'Truly Unique',
-                    location: 'MO, USA'
-                },
-                {
-                    url: `https://www.wanderdiscgolf.com/`,
-                    searchPath: ``,
-                    name: 'Wander Disc Golf',
-                    location: 'IA, USA'
-                },
-                {
-                    url: `https://www.wanderdiscgolf.com/`,
-                    searchPath: `search?q=${searchTerm}`,
-                    name: 'Wander Disc Golf',
-                    location: 'IA, USA'
-                },
-            ];
-
-            // Add rows to the table for each record above.
-            const sortByLocation = document.getElementById('sort-by-location').checked;
-            if(sortByLocation) {
-                siteList.sort((a,b) => {
-                    if(a.location < b.location)
-                        return -1;
-                    if(a.location < b.location)
-                        return 1;
-                    else
-                        return 0;
-                });
-            }
-
-            siteList.forEach((record) => {
-                addRow(record, searchTerm != '');
-            });
-        }
-        
-        // default to empty
-        loadTable("")
-        </script>
+      // default to empty
+      loadTable("");
+    </script>
   </body>
 </html>
