@@ -4,9 +4,13 @@
     <title>Jake's Disc Finder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      html {
+        height: 100%;
+      }
       body {
         font-family: Calibri, Candara, Segoe, Segoe UI, Optima, Arial,
           sans-serif;
+        height: 100%;
       }
 
       h1 {
@@ -30,6 +34,8 @@
         margin: 0 auto;
         padding: 1vw;
         max-width: 800px;
+        background-color: #fff;
+        height: 100%;
       }
 
       #search-form {
@@ -50,6 +56,11 @@
         font-style: italic;
       }
 
+      #results {
+        padding: 1vw;
+        height: 100%;
+      }
+
       .retailer-link {
         text-decoration: none;
         font-size: larger;
@@ -64,17 +75,18 @@
   </head>
   <body>
     <div id="content">
-      <h1>Jake's Disc Finder</h1>
-      <p id="intro">
-        This is a simple search tool for finding discs at various retailers. To
-        use, simply enter your search term into the search field and click on
-        one of the links. A new tab will open with a search started at the
-        retailer's website.
-      </p>
-
+      <header>
+        <h1>Jake's Disc Finder</h1>
+        <p id="intro">
+          This is a simple search tool for finding discs at various retailers.
+          To use, simply enter your search term into the search field and click
+          on one of the links. A new tab will open with a search started at the
+          retailer's website.
+        </p>
+      </header>
       <hr />
 
-      <div>
+      <div id="results">
         <div id="search-form">
           <label for="search-input">Disc Search</label>
           <input
