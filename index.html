@@ -104,6 +104,12 @@
             oninput="loadTable()"
             autofocus
           />
+          <!-- <input
+            id="open-all"
+            value="Open All Links"
+            onclick="openAll()"
+            type="button"
+            /> -->
         </div>
         <table id="link-table">
           <thead>
@@ -117,130 +123,11 @@
       </div>
     </div>
     <script>
-      // Add a new row to the link-table
-      function addRow(record, isSearch) {
-        const table = document.getElementById("link-table");
-        const tableBody = document.querySelector("tbody");
-        const row = tableBody.insertRow(-1);
 
-        // Add Name to row
-        const nameCell = row.insertCell(-1);
-        var link = document.createElement("a");
-        link.setAttribute(
-          "href",
-          record.url + (isSearch ? record.searchPath : "")
-        );
-        link.setAttribute("target", "_blank");
-        link.className = "retailer-link";
-        link.appendChild(document.createTextNode(record.name));
-        nameCell.appendChild(link);
-
-        // Add Location to row
-        const locationCell = row.insertCell(-1);
-        link = document.createElement("a");
-        link.setAttribute(
-          "href",
-          record.url + (isSearch ? record.searchPath : "")
-        );
-        link.setAttribute("target", "_blank");
-        link.className = "retailer-link";
-        link.appendChild(document.createTextNode(record.location));
-        locationCell.appendChild(link);
-      }
-
-      // Open a url in a new tab. Might not work with popup blockers
-      // FOR FUTURE USE
-      function openInNewTab(href) {
-        Object.assign(document.createElement("a"), {
-          target: "_blank",
-          href: href,
-        }).click();
-      }
-
-      // Remove all rows from the link table.
-      function clearTable() {
-        // Clear existing data first.
-        const table = document.getElementById("link-table");
-        const rowCount = table.rows.length;
-        for (var i = rowCount - 1; i > 0; i--) {
-          table.deleteRow(i);
-        }
-      }
-
-      // Load some filler text into the link table.
-      function loadFillerText() {
-        const table = document.getElementById("link-table");
-        const row = table.insertRow(-1);
-
-        // Add filler text to Retailer Name column in row
-        const nameCell = row.insertCell(-1);
-        const fillerSpan = document.createElement("span");
-        fillerSpan.id = "filler-text";
-        fillerSpan.appendChild(
-          document.createTextNode("Waiting for search term...")
-        );
-        nameCell.appendChild(fillerSpan);
-
-        // Add Location column filler value
-        row.insertCell(-1);
-      }
-
-      // Sort the link table by column
-      function sortColumn(index) {
-        // Query all rows
-        const table = document.getElementById("link-table");
-        const tableBody = table.querySelector("tbody");
-        const rows = tableBody.querySelectorAll("tr");
-
-        // Clone the rows
-        const newRows = Array.from(rows);
-
-        // Sort rows by the content of cells
-        newRows.sort(function (rowA, rowB) {
-          // Get the content of cells
-          const cellA = rowA.querySelectorAll("td")[index].querySelector("a")
-            .innerHTML;
-          const cellB = rowB.querySelectorAll("td")[index].querySelector("a")
-            .innerHTML;
-
-          switch (true) {
-            case cellA > cellB:
-              return 1;
-            case cellA < cellB:
-              return -1;
-            case cellA === cellB:
-              return 0;
-          }
-        });
-
-        // Remove old rows.
-        [].forEach.call(rows, function (row) {
-          tableBody.removeChild(row);
-        });
-
-        // Append new rows.
-        newRows.forEach(function (newRow) {
-          tableBody.appendChild(newRow);
-        });
-      }
-
-      // Load the link-table with links
-      function loadTable() {
-        // Clear any existing data first.
-        clearTable();
-
-        // Need a search term.
-        var searchTerm = document.getElementById("search-input").value;
-        if (searchTerm == "") {
-          loadFillerText();
-          return;
-        }
-
-        // Make sure it's URL Safe
-        searchTerm = encodeURIComponent(searchTerm);
-
+      // Get list of site data.
+      function getSiteList(searchTerm) {
         // Master list of sites. Probably store this in a JSON file in the future.
-        const siteList = [
+        return [
           {
             url: `https://1010discs.com/`,
             searchPath: `search?type=product&q=${searchTerm}`,
@@ -352,7 +239,7 @@
           },
           {
             url: `https://corediscgolf.com/`,
-            searchPath: `search?q=entropy&options%5Bprefix%5D=last`,
+            searchPath: `search?q=${searchTerm}&options%5Bprefix%5D=last`,
             name: "Core Disc Golf",
             location: "USA"
           },
@@ -767,6 +654,147 @@
             location: "TX, USA",
           },
         ];
+      }
+      // Add a new row to the link-table
+      function addRow(record, isSearch) {
+        const table = document.getElementById("link-table");
+        const tableBody = document.querySelector("tbody");
+        const row = tableBody.insertRow(-1);
+
+        // Add Name to row
+        const nameCell = row.insertCell(-1);
+        var link = document.createElement("a");
+        link.setAttribute(
+          "href",
+          record.url + (isSearch ? record.searchPath : "")
+        );
+        link.setAttribute("target", "_blank");
+        link.className = "retailer-link";
+        link.appendChild(document.createTextNode(record.name));
+        nameCell.appendChild(link);
+
+        // Add Location to row
+        const locationCell = row.insertCell(-1);
+        link = document.createElement("a");
+        link.setAttribute(
+          "href",
+          record.url + (isSearch ? record.searchPath : "")
+        );
+        link.setAttribute("target", "_blank");
+        link.className = "retailer-link";
+        link.appendChild(document.createTextNode(record.location));
+        locationCell.appendChild(link);
+      }
+
+      // Open a tab for each link in the table. :|
+      function openAll() {
+
+        // Need a search term.
+        var searchTerm = document.getElementById("search-input").value;
+        if (searchTerm == "") {
+          return;
+        }
+        getSiteList(searchTerm).forEach(record => {
+          var url = record.url;
+          url += record.searchPath ? record.searchPath : '';
+          window.setTimeout(() => {
+            openInNewTab(url);
+          }, 100);
+        });
+
+      }
+      // Open a url in a new tab. Might not work with popup blockers
+      // FOR FUTURE USE
+      function openInNewTab(href) {
+        Object.assign(document.createElement("a"), {
+          target: "_blank",
+          href: href,
+        }).click();
+      }
+
+      // Remove all rows from the link table.
+      function clearTable() {
+        // Clear existing data first.
+        const table = document.getElementById("link-table");
+        const rowCount = table.rows.length;
+        for (var i = rowCount - 1; i > 0; i--) {
+          table.deleteRow(i);
+        }
+      }
+
+      // Load some filler text into the link table.
+      function loadFillerText() {
+        const table = document.getElementById("link-table");
+        const row = table.insertRow(-1);
+
+        // Add filler text to Retailer Name column in row
+        const nameCell = row.insertCell(-1);
+        const fillerSpan = document.createElement("span");
+        fillerSpan.id = "filler-text";
+        fillerSpan.appendChild(
+          document.createTextNode("Waiting for search term...")
+        );
+        nameCell.appendChild(fillerSpan);
+
+        // Add Location column filler value
+        row.insertCell(-1);
+      }
+
+      // Sort the link table by column
+      function sortColumn(index) {
+        // Query all rows
+        const table = document.getElementById("link-table");
+        const tableBody = table.querySelector("tbody");
+        const rows = tableBody.querySelectorAll("tr");
+
+        // Clone the rows
+        const newRows = Array.from(rows);
+
+        // Sort rows by the content of cells
+        newRows.sort(function (rowA, rowB) {
+          // Get the content of cells
+          const cellA = rowA.querySelectorAll("td")[index].querySelector("a")
+            .innerHTML;
+          const cellB = rowB.querySelectorAll("td")[index].querySelector("a")
+            .innerHTML;
+
+          switch (true) {
+            case cellA > cellB:
+              return 1;
+            case cellA < cellB:
+              return -1;
+            case cellA === cellB:
+              return 0;
+          }
+        });
+
+        // Remove old rows.
+        [].forEach.call(rows, function (row) {
+          tableBody.removeChild(row);
+        });
+
+        // Append new rows.
+        newRows.forEach(function (newRow) {
+          tableBody.appendChild(newRow);
+        });
+      }
+
+      // Load the link-table with links
+      function loadTable() {
+        // Clear any existing data first.
+        clearTable();
+
+        // Need a search term.
+        var searchTerm = document.getElementById("search-input").value;
+        if (searchTerm == "") {
+          loadFillerText();
+          return;
+        }
+
+        // Make sure it's URL Safe
+        searchTerm = encodeURIComponent(searchTerm);
+
+        const siteList = getSiteList(searchTerm);
 
         // Query the table
         const table = document.getElementById("link-table");
