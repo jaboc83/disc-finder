@@ -1,0 +1,617 @@
+{
+    "sites": [
+        {
+            "url": "https://1010discs.com/",
+            "searchPath": "search?type=product&q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "1010 Discs",
+            "location": "MS, USA"
+        },
+        {
+            "url": "https://adoptdiscgolfcustoms.com/",
+            "searchPath": "search?q=SEARCH_TERM&options%5Bprefix%5D=last",
+            "individualDiscImages": true,
+            "name": "Adopt Disc Golf",
+            "location": "NC, USA"
+        },
+        {
+            "url": "https://airbornpreserve.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "name": "Airborn Preserve Pro Shop",
+            "location": "MN, USA"
+        },
+        {
+            "url": "https://alloutdiscgolf.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "All Out Disc Golf",
+            "location": "AZ, USA"
+        },
+        {
+            "url": "https://anhyzerdg.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Anhyzer DG",
+            "location": "USA"
+        },
+        {
+            "url": "https://throwanotherround.com/",
+            "searchPath": "search.php?search_query=SEARCH_TERM",
+            "name": "Another Round Disc Golf",
+            "location": "NC, USA"
+        },
+        {
+            "url": "https://www.appalachiandiscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM*&type=product",
+            "individualDiscImages": true,
+            "name": "Appalachian Disc Golf",
+            "location": "WV, USA"
+        },
+        {
+            "url": "https://arrowdiscs.com/",
+            "searchPath": "?s=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Arrow Disc Distributions",
+            "location": "CA, USA"
+        },
+        {
+            "url": "https://www.basketbashersdiscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM&options%5Bprefix%5D=last",
+            "individualDiscImages": true,
+            "name": "Basket Bashers",
+            "location": "NC, USA"
+        },
+        {
+            "url": "https://baystatediscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Bay State Disc Golf",
+            "location": "MA, USA"
+        },
+        {
+            "url": "https://www.blueskydiscgolf.co/",
+            "searchPath": "?s=SEARCH_TERM",
+            "name": "Blue Sky Disc Golf",
+            "location": "CO, USA"
+        },
+        {
+            "url": "https://www.bombdiscs.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "Bomb Discs",
+            "location": "KY, USA"
+        },
+        {
+            "url": "https://www.breakingaces.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Breaking Aces",
+            "location": "MI, USA"
+        },
+        {
+            "url": "https://www.briadiscgolf.com/",
+            "searchPath": "search-results-page/SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "BRIA Disc Golf",
+            "location": "NJ, USA"
+        },
+        {
+            "url": "https://www.ebay.com/",
+            "searchPath": "sch/i.html?_dmd=2&iconV2Request=true&_ssn=celestial_discs&store_cat=0&store_name=celestialdiscs&_oac=1&_nkw=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Celestial Discs",
+            "location": "IA, USA"
+        },
+        {
+            "url": "https://chainsordyediscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM&options%5Bprefix%5D=last",
+            "individualDiscImages": true,
+            "name": "Chains or Dye",
+            "location": "PA, USA"
+        },
+        {
+            "url": "https://corediscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM&options%5Bprefix%5D=last",
+            "individualDiscImages": true,
+            "name": "Core Disc Golf",
+            "location": "USA"
+        },
+        {
+            "url": "https://www.cycleworksdiscgolf.com/",
+            "searchPath": "iishop?form_version=2&showSearchResults=1&search_keyword=SEARCH_TERM&image=Search",
+            "name": "Cycle Works",
+            "location": "TX, USA"
+        },
+        {
+            "url": "https://www.daddydiscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Daddy Disc Golf",
+            "location": "USA"
+        },
+        {
+            "url": "https://www.deathputtdiscsupply.com/",
+            "searchPath": "s/search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Death Putt Disc Supply",
+            "location": "OH, USA"
+        },
+        {
+            "url": "https://dfxdiscs.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "DFX Discs",
+            "location": "USA"
+        },
+        {
+            "url": "https://www.therealdiscndat.com/",
+            "searchPath": "apps/search?q=SEARCH_TERM",
+            "name": "Disc n' Dat",
+            "location": "KY, USA"
+        },
+        {
+            "url": "https://thediscbarn.com/",
+            "searchPath": "search?type=product&options%5Bprefix%5D=last&q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "The Disc Barn",
+            "location": "TX, USA"
+        },
+        {
+            "url": "https://www.discbaron.com/",
+            "searchPath": "searchresults.asp?Search=SEARCH_TERM&Submit=",
+            "individualDiscImages": true,
+            "name": "Disc Baron",
+            "location": "MI, USA"
+        },
+        {
+            "url": "https://thediscdepot.com/",
+            "searchPath": "search?options%5Bunavailable_products%5D=show&options%5Bprefix%5D=last&q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "The Disc Depot",
+            "location": "USA"
+        },
+        {
+            "url": "https://discgolf978.com/",
+            "searchPath": "search.php?search_query=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Disc Golf 978",
+            "location": "MA, USA"
+        },
+        {
+            "url": "https://www.discgolfamerica.com/",
+            "searchPath": "?s=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Disc Golf America",
+            "location": "USA"
+        },
+        {
+            "url": "https://www.discgolfcenter.com/",
+            "searchPath": "main_displayProductList.php?sn=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Disc Golf Center",
+            "location": "FL, USA"
+        },
+        {
+            "url": "https://thediscgolfexperience.com/",
+            "searchPath": "?s=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Disc Golf Over Everything",
+            "location": "USA"
+        },
+        {
+            "url": "https://discshop.eu/",
+            "searchPath": "en/search?s=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Disc Shop",
+            "location": "Lithuania, EU"
+        },
+        {
+            "url": "https://discstore.com/",
+            "searchPath": "catalogsearch/result/?cat=0&q=SEARCH_TERM",
+            "name": "Disc Store",
+            "location": "NE, USA"
+        },
+        {
+            "url": "https://discimusprime.com/",
+            "searchPath": "search?q=SEARCH_TERM&options%5Bprefix%5D=last",
+            "individualDiscImages": true,
+            "name": "Discimus Prime",
+            "location": "USA"
+        },
+        {
+            "url": "https://discountdiscgolf.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "name": "Discount Disc Golf",
+            "location": "USA"
+        },
+        {
+            "url": "https://www.dtworld.com/",
+            "searchPath": "searchresults.asp?Search=SEARCH_TERM&Submit=",
+            "name": "Discovering the World",
+            "location": "CA, USA"
+        },
+        {
+            "url": "https://www.discgolfmarket.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "name": "D-Town",
+            "location": "PA, USA"
+        },
+        {
+            "url": "https://www.dzdiscs.com/",
+            "searchPath": "a/search?type=product%2Carticle&options%5Bprefix%5D=last&q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "DZ Discs",
+            "location": "KS, USA"
+        },
+        {
+            "url": "https://www.fablediscs.com/",
+            "searchPath": "search?type=product&options[prefix]=last&q=SEARCH_TERM*",
+            "individualDiscImages": true,
+            "name": "Fable Discs",
+            "location": "DE, USA"
+        },
+        {
+            "url": "https://fisherdiscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM&options%5Bprefix%5D=last",
+            "individualDiscImages": true,
+            "name": "Fisher Disc Golf",
+            "location": "USA"
+        },
+        {
+            "url": "https://www.flightfactorydiscs.com/",
+            "searchPath": "search?type=product,page,article&q=SEARCH_TERM*",
+            "individualDiscImages": true,
+            "name": "Flight Factory",
+            "location": "FL, USA"
+        },
+        {
+            "url": "https://foundationdiscs.com/",
+            "searchPath": "search?type=product%2Carticle%2Cpage&q=SEARCH_TERM*",
+            "individualDiscImages": true,
+            "name": "Foundation Disc Golf",
+            "location": "VA, USA"
+        },
+        {
+            "url": "https://www.gatekeepermedia.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Gatekeeper Media",
+            "location": "USA"
+        },
+        {
+            "url": "https://gemdiscs.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Gem Discs",
+            "location": "USA"
+        },
+        {
+            "url": "https://golfdisco.com/",
+            "searchPath": "search?type=product%2Carticle%2Cpage&q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Golf Disco",
+            "location": "FL, USA"
+        },
+        {
+            "url": "https://gottagogottathrow.com/",
+            "searchPath": "search?type=product&q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Gotta Go Gotta Throw",
+            "location": "MN, USA"
+        },
+        {
+            "url": "https://greatlakesdisc.com/",
+            "searchPath": "search.php?search_query=SEARCH_TERM",
+            "name": "Great Lakes Disc",
+            "location": "MI, USA"
+        },
+        {
+            "url": "https://hazyshade.com/",
+            "searchPath": "search?q=SEARCH_TERM&type=product",
+            "individualDiscImages": true,
+            "name": "Hazy Shade",
+            "location": "OH, USA"
+        },
+        {
+            "url": "https://www.ebay.com/",
+            "searchPath": "sch/i.html?_dmd=2&iconV2Request=true&_ssn=hyzerfarm&store_cat=0&store_name=hyzerfarm&_oac=1&_nkw=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Hyzer Farm",
+            "location": "WA, USA"
+        },
+        {
+            "url": "https://idealdiscs.com/",
+            "searchPath": "search?type=article%2Cpage%2Cproduct&q=SEARCH_TERM*",
+            "individualDiscImages": true,
+            "name": "Ideal Discs",
+            "location": "TX, USA"
+        },
+        {
+            "url": "https://www.indydiscsupply.com/",
+            "searchPath": "s/search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Indy Disc Supply",
+            "location": "IN, USA"
+        },
+        {
+            "url": "https://infinitediscs.com/",
+            "searchPath": "Search-Results?search_text=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Infinite Discs",
+            "location": "UT, USA"
+        },
+        {
+            "url": "https://www.innerpeacediscgolf.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "Inner Peace Disc Golf",
+            "location": "USA"
+        },
+        {
+            "url": "https://jess-ben-discin.square.site/",
+            "searchPath": "s/search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Jess Ben Discin'",
+            "location": "MO, USA"
+        },
+        {
+            "url": "https://kwsdiscgolf.com/",
+            "searchPath": "?product_cat=&s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "KW's Disc Golf",
+            "location": "MI, USA"
+        },
+        {
+            "url": "https://localroute.com/",
+            "searchPath": "search?type=product&q=SEARCH_TERM",
+            "name": "Local Route",
+            "location": "FL, USA"
+        },
+        {
+            "url": "https://www.lonestardiscs.net/",
+            "searchPath": "search-results/q-SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Lone Star Disc Supply",
+            "location": "TX, USA"
+        },
+        {
+            "url": "https://luckydiscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Lucky Disc Golf",
+            "location": "NV, USA"
+        },
+        {
+            "url": "https://marsdiscs.com/",
+            "searchPath": "search?type=product&q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Mars Flying Saucers",
+            "location": "SC, USA"
+        },
+        {
+            "url": "https://www.marshallstreetdiscgolf.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "Marshall Street",
+            "location": "MA, USA"
+        },
+        {
+            "url": "https://mvpproshop.com/",
+            "searchPath": "catalogsearch/result/?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "MVP Pro Shop",
+            "location": "MI, USA"
+        },
+        {
+            "url": "https://www.naileditdiscgolf.com/",
+            "searchPath": "pages/search-results-page?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Nailed It Disc Golf",
+            "location": "WI, USA"
+        },
+        {
+            "url": "https://www.thenatidiscgolf.com/",
+            "searchPath": "apps/search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "The Nati",
+            "location": "OH, USA"
+        },
+        {
+            "url": "https://www.newyorkdiscgolfsupply.com/",
+            "searchPath": "s/search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "New York Disc Golf Supply",
+            "location": "NY, USA"
+        },
+        {
+            "url": "https://otbdiscs.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "OTB Discs",
+            "location": "CA, USA"
+        },
+        {
+            "url": "https://www.outofboundsdg.com/",
+            "searchPath": "search-results/q-SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Out of Bounds Disc Golf",
+            "location": "USA"
+        },
+        {
+            "url": "https://www.packexdiscgolf.com/",
+            "searchPath": "s/search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "PackEx Disc Golf",
+            "location": "USA"
+        },
+        {
+            "url": "https://parplastics.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "Par Plastics",
+            "location": "MN, USA"
+        },
+        {
+            "url": "https://www.piratedisc.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Pirate Disc",
+            "location": "MN, USA"
+        },
+        {
+            "url": "https://powergripusa.com/",
+            "searchPath": "search?query=SEARCH_TERM",
+            "name": "Powergrip USA",
+            "location": "IL, USA"
+        },
+        {
+            "url": "https://purelinedg.com/",
+            "searchPath": "products/search?search=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Pureline Disc Golf",
+            "location": "FL, USA"
+        },
+        {
+            "url": "https://www.randiscgolf.com/",
+            "searchPath": "search-results/q-SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Ran Disc Golf",
+            "location": "PA, USA"
+        },
+        {
+            "url": "https://resistancediscs.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Resistance Discs",
+            "location": "OR, USA"
+        },
+        {
+            "url": "https://rocketdiscs.com/",
+            "searchPath": "Search-Results?search_text=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Rocket Discs",
+            "location": "Germany, EU"
+        },
+        {
+            "url": "https://roguediscs.com/",
+            "searchPath": "discs?terms=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Rogue Discs",
+            "location": "IN, USA"
+        },
+        {
+            "url": "https://skulboy.storenvy.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "name": "Skullboy Designs",
+            "location": "CA, USA"
+        },
+        {
+            "url": "https://www.sunkingdiscs.com/",
+            "searchPath": "?target=search&mode=search&substring=SEARCH_TERM&including=all",
+            "individualDiscImages": true,
+            "name": "Sun King Discs",
+            "location": "FL, USA"
+        },
+        {
+            "url": "https://www.superflydiscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "SuperFly Disc Golf",
+            "location": "USA"
+        },
+        {
+            "url": "https://sweetspotdiscgolf.com/",
+            "searchPath": "?s=SEARCH_TERM",
+            "name": "SweetSpot Disc Golf",
+            "location": "MI, USA"
+        },
+        {
+            "url": "https://teamfiggins.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "Team Figgins",
+            "location": "FL, USA"
+        },
+        {
+            "url": "https://tgmskateboards.com/",
+            "searchPath": "search.php?search_query=SEARCH_TERM&section=product",
+            "individualDiscImages": true,
+            "name": "TGM Skateboards",
+            "location": "MI, USA"
+        },
+        {
+            "url": "https://thrownatur-discgolf.de/en/",
+            "searchPath": "advanced_search_result.php?categories_id=0&keywords=SEARCH_TERM&inc_subcat=1",
+            "individualDiscImages": true,
+            "name": "Thrownatur",
+            "location": "Sweden, EU"
+        },
+        {
+            "url": "https://throwshop.us/",
+            "searchPath": "search?type=product&q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "The Throw Shop",
+            "location": "MI, USA"
+        },
+        {
+            "url": "https://titandiscgolf.com/",
+            "searchPath": "search?type=product&q=SEARCH_TERM*",
+            "individualDiscImages": true,
+            "name": "Titan Disc Golf",
+            "location": "IA, USA"
+        },
+        {
+            "url": "https://www.toptierdiscgolf.com/",
+            "searchPath": "search?q=SEARCH_TERM&options%5Bprefix%5d=last",
+            "individualDiscImages": true,
+            "name": "Top Tier Disc Golf",
+            "location": "MT, USA"
+        },
+        {
+            "url": "https://tossinbirdies.com/",
+            "searchPath": "search?type=product&q=SEARCH_TERM*",
+            "individualDiscImages": true,
+            "name": "Tossin' Birdies",
+            "location": "USA"
+        },
+        {
+            "url": "https://treelovedg.com/",
+            "searchPath": "search?type=product%2Carticle%2Cpage&q=SEARCH_TERM",
+            "name": "Tree Love Disc Golf",
+            "location": "TX, USA"
+        },
+        {
+            "url": "https://www.tudiscgolf.com/",
+            "searchPath": "?s=SEARCH_TERM&post_type=product",
+            "individualDiscImages": true,
+            "name": "Truly Unique",
+            "location": "MO, USA"
+        },
+        {
+            "url": "https://www.wanderdiscgolf.com/",
+            "searchPath": "",
+            "name": "Wander Disc Golf",
+            "location": "IA, USA"
+        },
+        {
+            "url": "https://yeetstreetdiscs.com/",
+            "searchPath": "search?q=SEARCH_TERM*%20AND%20product_type:*&type=product",
+            "individualDiscImages": true,
+            "name": "Yeet Street Discs",
+            "location": "NC, USA"
+        },
+        {
+            "url": "https://zamdesign.com/",
+            "searchPath": "search?q=SEARCH_TERM",
+            "individualDiscImages": true,
+            "name": "Zam Design",
+            "location": "TX, USA"
+        },
+        {
+            "url": "https://www.zenllamadiscgolf.com/",
+            "searchPath": "s/search?q=SEARCH_TERM",
+            "name": "Zen Llama Disc Golf",
+            "location": "NE, USA"
+        }
+    ]
+}
