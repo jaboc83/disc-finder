@@ -199,6 +199,13 @@
             "location": "USA"
         },
         {
+            "name": "Disc Golf Shopping",
+            "url": "https://discgolfshopping.com/",
+            "searchPath": "search?type=product&q=SEARCH_TERM",
+            "individualDiscImages":true,
+            "location": "IL, USA"
+        },
+        {
             "name": "Disc Shop",
             "url": "https://discshop.eu/",
             "searchPath": "en/search?s=SEARCH_TERM",
@@ -483,7 +490,7 @@
             "url": "https://reloaddiscs.com/",
             "searchPath": "search?q=SEARCH_TERM&options%5Bprefix%5D=last",
             "individualDiscImages": true,
-            "location": "USA"
+            "location": "TX, USA"
         },
         {
             "name": "Resistance Discs",
